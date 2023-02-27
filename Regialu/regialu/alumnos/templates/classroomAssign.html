@@ -1,0 +1,104 @@
+{% extends "base.html" %} {% load static%}
+{% block stilos %}
+<link rel="stylesheet" href="{% static 'alumnos/css/estilo.css' %}"> {%endblock%}
+{%block contenido%}
+<div class="row">
+    <div class="col-8">
+        <h5 class="page-title">Lista de Alumnos en General para Asignar Aula</h5>
+
+    </div>
+
+    <div class="col-4">
+        <nav aria-label="breadcrumb" id="routes">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page"><a href="{% url 'students_all' %}">Alumnos</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Asignar Aula A Alumno</li>
+
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="dropdown-divider"></div>
+
+<div class="container-fluid" style="background-color: white;">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table" id="order-listing">
+                    <thead>
+                        <tr>
+                            <th hidden scope="col">Id</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Nombres</th>
+                            <th scope="col">Grado</th>
+                            <th scope="col">Aula</th>
+                            <th hidden>estado</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for n in students %}
+                        <tr>
+                            <td hidden>{{n.idAlumno}}</td>
+                            <td>{{n.apellidos}}</td>
+                            <td>{{n.nombres}}</td>
+                            <td>{{n.grado}}</td>
+                            <td> {% if n.aula.seccion == null %}
+                                <select class="form-control classroom_select" aria-label="Default select example">
+                                    <option selected value="0">Seleccione una Aula</option>
+                                    {% for n in classrooms %}
+                                    <option value="{{n.idAula}}">{{n.grado}} {{n.seccion}}
+                                        {{n.get_nivel_display}} {{n.institucion.nombre}}</option>
+                                    {% endfor%}
+                                </select>
+                                {% else %}
+                                <div class="row">
+                                    <div class="col-10"><select style="background-color: red;color: white;"
+                                            class="form-control" id="classroom-select-disabled"
+                                            aria-label="Default select example" disabled>
+                                            <option selected value="{{n.aula.idAula}}">{{n.aula.grado}}
+                                                {{n.aula.seccion}}
+                                                {{n.aula.get_nivel_display}} {{n.aula.institucion.nombre}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-2"><button type="button" style="border: none;" class=" form-control"
+                                            id="btn-edit" title="Click para Activar selección de Aula"><i
+                                                class="fas fa-edit"></i></button>
+                                    </div>
+                                </div>
+
+                                {%endif%}
+
+
+                            </td>
+                            {%if n.aula.seccion == null %}
+                            <td hidden>Sin Asignar</td>
+                            {%else%}
+                            <td hidden>{{n.aula.grado}} {{n.aula.seccion}} {{n.aula.get_nivel_display}}
+                                {{n.aula.institucion.nombre}}</td>
+
+                            {%endif%}</td>
+
+
+                        </tr>
+
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div><button style="float: right;" class="btn btn-success btn-icon-text" id="btn-assign"><i
+                class="fas fa-upload btn-icon-prepend"></i>Asignar Aulas </button></div>
+</div>
+
+{%endblock%} {%load static %}
+{%block javascript %}
+
+<script src="{% static 'alumnos/js/todoalumnos.js' %}"></script>
+<script src="{% static 'melody/js/data-table.js' %}"></script>
+
+
+{%endblock%}

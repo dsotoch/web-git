@@ -1,0 +1,21 @@
+table th{
+    background-color: purple;
+    color: white;
+    height: 50px;
+    text-align: center;
+}
+table tbody tr{
+    height: 40px;
+    text-align: center;
+    background-color: white;
+    border-bottom: 1px solid black;
+}
+#mensaje_{
+    background-color: red;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    height: 35px;
+ 
+    text-align: center;
+}

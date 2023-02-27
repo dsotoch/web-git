@@ -1,0 +1,45 @@
+<div id="div-asistencia">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-success">
+                    <li class="breadcrumb-item"><a href="#" style="color: white;">Asistencia</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Grabar Asistencia del Aula : {{aula}} </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <button class="btn btn-warning btn-icon-text" id="btn-update-assistance"> <i class="fas fa-edit btn-icon-prepend">
+        </i> Modificar Asistencia </button><button class="btn btn-warning btn-icon-text" id="btn-update-assistance"> <i
+            class="fas fa-edit btn-icon-prepend">
+        </i> Reporte de  Asistencia </button>
+    <div class="table-responsive">
+        <table class="table student-assistance" id="order-listing2">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Aula</th>
+                    <th scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+    </div>
+    <div class="dropdown-divider"></div>
+    <button style="float: right;" class="btn btn-success" id="save-assistance" disabled>Grabar Asistencia</button>
+
+</div>{%load static %}
+
+{%block javascript %}
+<script src="{% static 'melody/js/toastDemo.js'%}" type="module"></script>
+
+<script src="{% static 'gestion/gestion.js'%}" type="module"></script>
+
+<script src="{% static 'melody/js/data-table.js' %}"></script>
+
+{%endblock%}

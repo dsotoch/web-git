@@ -1,0 +1,86 @@
+
+#select-institucion{
+    cursor: pointer;
+    background-color: blueviolet;
+    color: white;
+    border-radius: 10px;
+}
+#title {
+    color: white;
+    font-weight: unset;
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+form {
+    border:  solid  green;
+}
+#divtitle label{
+    color: black;
+}
+
+#exampleInputText1 {
+    margin: 10px;
+    width: 90%;
+}
+
+#seccion {
+    margin: 10px;
+    width: 90%;
+}
+
+#grado {
+    margin: 10px;
+    width: 90%;
+}
+
+#nivel {
+    margin: 10px;
+    width: 90%;
+}
+
+.form-label {
+    margin: 10px;
+    color: white;
+}
+
+#botonguardar {
+    border-radius: 10px;
+    color: white;
+    width: 40%;
+    margin: 10px;
+    height: 10%;
+}
+
+#botonguardar:hover {
+    background-color: rgb(88, 255, 88);
+}
+
+#botonguardar:active {
+    background-color: purple;
+}
+
+
+
+.cantidad {
+    color: purple;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+table {
+    align-content: center;
+}
+
+table th {
+    background-color: black;
+    color: white;
+    align-content: center;
+}
+
+.scrollable {
+    border-radius: 5px;
+}
+#order_listing th{
+background-color: black;
+color: white;
+}

@@ -1,0 +1,270 @@
+<div class="content-wraper">
+    <div class="dropdown-divider"></div>
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-success">
+                    <li class="breadcrumb-item"><a href="#" style="color: white;">Incidentes</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Lista de Incidentes</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div><button data-toggle="modal" data-target="#exampleModal3" class="btn btn-warning btn-icon-text"
+            id="new-incident" title="Click para Agregar Nueva Incidencia">
+            <i class="fas fa-plus btn-icon-prepend"></i>Nueva Incidencia</button></div>
+
+
+
+    <div class="dropdown-divider">
+    </div>
+    <div class="table-responsive">
+        <table id="order-listing4" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Codigo
+                    </th>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Opciones</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for n in incidents %}
+
+                <tr>
+                    <td>{{n.idIncidencia}}</td>
+                    <td>{{n.fecha}}</td>
+                    <td>{{n.descripcion}}</td>
+                    <td>
+                        <div class="row">
+                            <div class="col-6"> <button class="btn-success" id="view-students"
+                                    title="Click para Ver Alumnos Responsables"> <i class="fas fa-eye"></i> </button>
+                            </div>
+                            <div class="col-6"> <button class="btn-danger" id="delete-incident"
+                                    title="Click para Eliminar Incidencia"> <i class="fas fa fa-window-close"></i>
+                                </button></div>
+                        </div>
+
+
+
+                    </td>
+                </tr>
+                {%endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Modal starts -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header  modal-incident">
+                <ul style="list-style: none;">
+                    <li>
+                        <h5 class="page-title2">Registrar Incidencia</h5>
+                    </li>
+
+                    <div class="dropdown-divider"></div>
+
+                </ul>
+                <button type="button" style="color: white;" class="close" data-dismiss="modal"
+                    aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table order-listing" id="order-listing5">
+                                        <thead>
+
+                                            <tr>
+                                                <th scope="col">Codigo</th>
+                                                <th scope="col">Apellidos</th>
+                                                <th scope="col">Nombres</th>
+
+
+                                                <th>Opciones</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            {%for n in students %}
+
+                                            <tr>
+                                                <td>
+                                                    {{n.idAlumno}}
+                                                </td>
+                                                <td>
+                                                    {{n.apellidos}}
+                                                </td>
+                                                <td>
+                                                    {{n.nombres}}
+                                                </td>
+
+                                                <td>
+                                                    <center><button class="btn btn-success" title="Click para Agregar"
+                                                            id="select-student-incident">
+                                                            <i class="fas fa-check"></i> </button></center>
+                                                </td>
+                                            </tr>
+
+                                            {%endfor%}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="">
+                                    <label for="incident-description">Descripción del Incidente</label>
+                                    <textarea name="" id="incident-description" cols="50" rows="10"
+                                        class="form-control"></textarea>
+                                    <br>
+                                    <div class="dropdown-divider"></div>
+
+                                    <label for="div-students">Alumnos Responsables</label>
+                                    <div class="row" id="div-students-incident"></div>
+                                    <br>
+                                    <div class="dropdown-divider"></div>
+                                    <label for="incident-date">Fecha</label>
+                                    <input type="date" name="" id="incident-date" class="form-control">
+                                    <br>
+                                    <center> <button class="btn btn-success btn-icon-text" title="Click para Registrar"
+                                            id="btn-save-incident"> <i
+                                                class="fas fa-upload btn-icon-prepend"></i>Registrar</button>
+                                        <button class="btn btn-danger btn-icon-text"
+                                            title="Click para Limpiar Registros" id="btn-clean-incident"> <i
+                                                class="fas fa-spinner btn-icon-prepend"></i>Nuevo</button>
+
+                                    </center>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal Ends -->
+<div id="modalReporte" class="modal">
+    <div class="modal-content3">
+        <span class="close" id="close-pdf">X</span>
+        <div id="incidente-reporte">
+            <center>
+                <div style="background-color: black;height: 50px">
+                    <label for="r" class="form-label">
+                        <h5 id="r" style="color: white;font-size: 25px;">Detalles de la Incidencia</h5>
+                    </label>
+                </div>
+            </center>
+            <table>
+
+                <tr>
+                    <td style="font-size: 20px;" colspan="2">
+                        Fecha de la Incidencia :
+                        <label id="fecha-"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 20px;" colspan="2">
+                        Alumnos Responsables del Incidente
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2" id="alu"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="dropdown-divider"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label for="" id="descripcion-reporte"></label></td>
+                </tr>
+            </table>
+        </div>
+        <button style="float: right;" class="btn btn-success btn-icon-text" id="PDFIncident"
+            title="Click para generar PDF"><i class="fas fa-file-pdf btn-icon-prepend"></i> Guardar PDF</button>
+    </div>
+
+</div>
+
+
+<!-- Modal starts--student -->
+<div class="modal fade" id="exampleModal_student" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header  modal-incident">
+                <ul style="list-style: none;">
+                    <li>
+                        <h5 class="page-title2">Detalles de la Incidencia</h5>
+                    </li>
+                    <input type="hidden" name="fecha-incidencia" id="fecha-incidencias">
+                    <div class="dropdown-divider"></div>
+
+
+
+                </ul>
+                <button type="button" style="color: white;" class="close" data-dismiss="modal"
+                    aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-body">
+                            <h4 class="card-title">Descripción del Incidente</h4>
+                            <div class="preview-list">
+                                <div class="table-responsive">
+                                    <div> <textarea name="" id="description" cols="120" rows="10" disabled></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="card-title">Alumnos Responsables</h4>
+                            <div class="preview-list" id="modal-responsible-students">
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button style="float: right;" class="btn btn-success btn-icon-text" id="generatePDFIncident"
+                    title="Click para generar "> Generar Reporte
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal Ends -->
+
+
+
+{%load static %}
+
+{%block javascript %}
+<script src="{% static 'melody/js/toastDemo.js'%}" type="module"></script>
+<script src="{% static 'incidencia/table.js' %}"></script>
+
+{%endblock%}

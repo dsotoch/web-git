@@ -1,0 +1,68 @@
+#titulo {
+    color: purple;
+    font-size: 25px;
+    font-weight: bold;
+}
+#btn-newStudent {
+    display:inline ;
+    float: right;
+}
+#routes{
+    float: right;
+}
+.btn-close{
+    background-color: purple;
+color: white;
+border: none;}
+.title{
+    width: 100%;
+    
+    color: white;
+}
+#div-title{
+    width: 100%;
+    background-color: purple;
+    
+}
+.cantidad {
+    color: purple;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.text {
+    font-size: 18px;
+}
+
+
+#mensaje {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.divmensaje {
+    background-color: red;
+    width: 100%;
+}
+
+#tablaTotal {
+    height: 900px;
+}
+
+#tablaTotal th {
+    background-color: purple;
+}
+#period-select{
+    background-color: purple;
+    color: white;
+}
+
+.cantidad{
+    border: none;
+    
+}
+#order-listing th{
+    background-color: black;
+    color: white;
+}

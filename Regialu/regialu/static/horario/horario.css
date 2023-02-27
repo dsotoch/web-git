@@ -1,0 +1,35 @@
+.cantidad{
+    width: 50px;
+    background-color: blueviolet;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    
+}
+#cantidad-aulas{
+color: brown;
+}
+.text{
+    font-size: 15px;
+    color: blueviolet;
+    font-weight: bold;
+}
+#form{
+    border: black solid;
+    background-color: white;
+    padding: 20px;
+}
+#chosen{
+    padding: 20px;
+    border:  black solid;
+    background-color: white;
+}
+table th{
+    background-color: black;
+    color: white;
+}
+.eliminar :hover{
+    color: black;
+    background-color: blueviolet;
+}

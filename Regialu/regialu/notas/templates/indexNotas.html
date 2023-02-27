@@ -1,0 +1,258 @@
+<style>
+    #miModal {
+        display: none;
+        /* Ocultar la modal por defecto */
+        position: fixed;
+        /* Fijar la posición de la modal */
+        z-index: 1;
+        /* Asegurarse de que la modal esté por encima de otros elementos */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Ancho de pantalla completa */
+        height: 100%;
+        /* Alto de pantalla completa */
+        overflow: auto;
+        /* Mostrar scrollbar si el contenido es demasiado grande */
+        background-color: rgb(0, 0, 0);
+        /* Fondo oscuro */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Fondo oscuro con transparencia */
+    }
+
+    .modal-content2 {
+        background-color: #fefefe;
+        margin: 15% auto;
+        /* Margen desde la parte superior y la parte inferior */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        /* Ancho del contenido */
+    }
+</style>
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-success">
+            <li class="breadcrumb-item"><a href="#" style="color: white;">Notas</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Gestión de Notas</li>
+        </ol>
+    </nav>
+    <div class="dropdown-divider"></div>
+    <div class="row">
+        <div class="col-6"><label for="id_schedule">Horario :</label><select class="form-control"
+                aria-label="Default select example" id="id_schedule">
+                <option selected value="0">Seleccione un Horario</option>
+
+            </select></div>
+        <div class="col-6"><label for="area">Area :</label>
+
+            <h5 class="form-control btn-warning" id="area">Selecciona un Horario</h5>
+            <input type="hidden" id="area-hidden">
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3"><label for="">Tipo :</label><select class="form-control" aria-label="Default select example"
+                id="guy" disabled>
+                <option selected value="0">Seleccione un Tipo</option>
+                <option value="bimestre">Bimestre</option>
+                <option value="trimestre">Trimestre</option>
+                <option value="semestre">Semestre</option>
+                <option value="otro">Otro</option>
+
+            </select>
+            <label class="btn-info form-control" id="num-guy">1</label>
+        </div>
+        <div class="col-3"><label for="">Unidad :</label><select class="form-control"
+                aria-label="Default select example" id="unit" disabled>
+                <option selected value="0">Seleccione una Unidad</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="otro">Otro</option>
+
+
+
+
+            </select></div>
+        <div class="col-6"><label for="operation_detail">Detalle Operación :</label>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-10"><label style="padding: 10px;" class="btn-info form-label "
+                                id="operation_detail"></label></div>
+                        <div class="col-2"> <button class="btn btn-success"
+                                title="Click para Realizar una Nueva Operación" id="new-operation"><i
+                                    class="fas fa-recycle"></i> </button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dropdown-divider"></div>
+
+    <div class="content-wraper" id="note-body">
+        <div class="table-responsive">
+            <table id="order-listing7" class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Apellidos</th>
+                        <th>Nombres</th>
+                        <th>Numero-Notas</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="row">
+            <div class="col-12">
+                <button hidden class="btn btn-success btn-icon-text" id="btn-report-all"
+                    title="Click para Generar Excel"><i class="fas fa-file-excel btn-icon-prepend"></i>Generar Reporte
+                    de Todas las Calificaciones</button>
+            </div>
+        </div>
+
+        <!-- Modal NEW-NOTE -->
+
+
+        <div class="modal fade" id="modal-note" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2"
+            aria-hidden="true" style="display: none;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header-note">
+                        <center>
+                            <h5 class="modal-title-note-student" id="exampleModalLabel-2">Registrar Nota al Alumno</h5>
+                        </center>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="">
+
+                            <label for="description" class="form-label">Descripción</label>
+                            <input class="form-control" type="text" name="description" id="description"
+                                placeholder="Ingrese la Descripción del Calificativo">
+                            <br>
+                            <label for="puntaje" class="form-label">Calificación</label>
+                            <input class="form-control" type="text" name="puntaje" id="puntaje"
+                                placeholder="Ingrese el Calificativo">
+                            <br>
+
+                        </form>
+                        <input type="hidden" id="id-student">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" id="save-note-modal"
+                            title="Click para Registrar el Calificativo">Registrar</button>
+
+                        <button class="btn btn-danger" id="new-note-modal"
+                            title="Click para Agregar Nuevo Calificativo">Nuevo
+                            Calificativo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Ends -->
+    <!-- Modal note-all -->
+
+
+    <div class="modal fade" id="modal-note-all" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2"
+        aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header-note">
+                    <center>
+                        <h5 class="modal-title notes-students" id="exampleModalLabel-2">Registrar Nota al Alumno</h5>
+                    </center>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-4"><label for="area-modal">#Area:</label> <label for=""
+                                id="area-modal">x</label>
+                        </div>
+                        <div class="col-4"><label for="guy-modal">#Tipo:</label> <label for="" id="guy-modal">x</label>
+                        </div>
+                        <div class="col-4"><label for="unit-modal">#Unidad:</label> <label for=""
+                                id="unit-modal">x</label></div>
+                        <input type="hidden" id="id_alumno_modal">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table" id="order-listing8">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Codigo
+                                            </th>
+                                            <th>Descripción</th>
+                                            <th>Calificativo</th>
+                                            <th>Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button style="margin: 5px;" class="btn btn-info btn-icon-text" title="Click para generar "
+                        id="pdf-selected-student"><i class="fas fa-tablet btn-icon-prepend"></i>Generar Reporte de
+                        las Calificaciónes</button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal PDF -->
+    <div id="myModal" class="modal">
+        <div class="modal-content2">
+            <span class="close" id="close-pdf">X</span>
+            <div id="pdf"></div>
+            <button style="float: right;" class="btn btn-success btn-icon-text" id="generate"
+                title="Click para generar PDF"><i class="fas fa-file-pdf btn-icon-prepend"></i> Guardar PDF</button>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+{%load static %}
+
+{%block javascript %}
+
+<script src="{% static 'incidencia/table.js'%}"></script>
+
+{%endblock%}

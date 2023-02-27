@@ -1,0 +1,160 @@
+#routes{
+    padding: 10px;
+    margin: 10px;
+}
+
+#options div button {
+    float: right;
+    background-color: blueviolet;
+}
+#order-listing th{
+    background-color: teal;;
+    color: white;
+}
+#order-listing2 th{
+    background-color: teal;
+    color: white;
+}
+#order-listing3 th{
+    background-color: teal;
+    color: white;
+}
+.modal-header{
+    background-color: teal;
+   
+}
+.page-title1{
+    color: black;
+    font-size: 25px;
+}
+.page-title2{
+    color:black ;
+}
+
+ 
+
+#btn-management:hover{
+    background-color: red;
+    color: white;
+}
+#div-asistencia{
+    background-color: white;
+    height: 100%;
+}
+#div-assistance{
+    background-color: white;
+    height: 100%;
+}
+#search {
+    margin: 5px;
+    background-color: red;
+    color: white;
+}
+#cancel{
+    float: right;
+}
+#order-listing4 th{
+    background-color: purple;
+    color: white;
+}
+#new-incident {
+    background-color: black;
+}
+
+
+.modal-incident{
+    background-color: purple;
+    color: white;
+}
+.page-title2{
+    color: white;
+}
+#order-listing5 th{
+    background-color: purple;
+    color: white;
+}
+
+
+#responsible{
+    background-color: red;
+    color: white;
+}
+#description{
+    background-color: white;
+}
+
+
+#order-listing6 th{
+    background-color: green;
+    color: white;
+}
+#order-listing7 th{
+    background-color: green;
+    color: white;
+}
+.modal-title-tipo{
+    background-color: green;
+    color: white;
+}
+.modal-header-note{
+    padding: 10px;
+    background-color: green;
+    color: white;
+}
+#order-listing8 th{
+    background-color: black;
+    color: white;
+}
+#btn-report-all{
+    float: right;
+}
+
+
+#modalReport {
+    display: none;
+    /* Ocultar la modal por defecto */
+    position: fixed;
+    /* Fijar la posición de la modal */
+    /* Asegurarse de que la modal esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Ancho de pantalla completa */
+    height: 100%;
+    /* Alto de pantalla completa */
+    overflow: auto;
+    /* Mostrar scrollbar si el contenido es demasiado grande */
+    background-color: rgb(0, 0, 0);
+    /* Fondo oscuro */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Fondo oscuro con transparencia */
+}
+
+.modal-content3 {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* Margen desde la parte superior y la parte inferior */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Ancho del contenido */
+}
+#modalReporte{
+    display: none;
+    /* Ocultar la modal por defecto */
+    position: fixed;
+    /* Fijar la posición de la modal */
+    /* Asegurarse de que la modal esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Ancho de pantalla completa */
+    height: 100%;
+    /* Alto de pantalla completa */
+    overflow: auto;
+    /* Mostrar scrollbar si el contenido es demasiado grande */
+    background-color: rgb(0, 0, 0);
+    /* Fondo oscuro */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Fondo oscuro con transparencia */
+}

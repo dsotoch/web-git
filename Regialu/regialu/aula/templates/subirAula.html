@@ -1,0 +1,128 @@
+{% extends "base.html" %} {% block stilos %} {%load static %}
+<link rel="stylesheet" href="{% static 'aula/estilo.css' %}"> {% endblock %}
+
+{% block contenido %}<br>
+<div class="page-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                <h3 class="page-title">Registrar Aulas</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dropdown-divider"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <form>
+                {% csrf_token %}
+                <div class="mb-3" id="divtitle">
+                    <div class="mb-3">
+                        <label for="institucion" class="form-label">Institución donde Pertenece</label>
+
+                    </div>
+                    <div class="mb-3"><select class="form-control" aria-label="Default select example" id="institucion"
+                            required>
+                            <option selected value="0">Seleccione una Opción</option>
+                            {%for n in ins%}
+                            <option value="{{n.idInstitucion}}">{{n.nombre}}</option>
+                            {%endfor%}
+
+                        </select></div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputText1" class="form-label">Sección</label>
+                        <input placeholder="Ingresa la Sección que pertenece la Aula" type="text" class="form-control"
+                            id="seccion" name="seccion" aria-describedby="textHelp" onkeyup="mayus(this)" required>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputText1" class="form-label">Grado</label>
+                        <input placeholder="Ingresa el Grado que pertenece la Aula" type="number" class="form-control"
+                            name="grado" id="grado" aria-describedby="textHelp" onkeyup="mayus(this)" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nivel" class="form-label">Nivel</label>
+                        <select class="form-control" aria-label="Default select example" id="nivel">
+                            <option selected value="0">Seleccione una Opción</option>
+                            <option value="PRI">PRIMARIA</option>
+                            <option value="SEC">SECUNDARIA</option>
+                            <option value="SUP">SUPERIOR</option>
+                            <option value="AFI">AFIANSIAMIENTO</option>
+                            <option value="OTR">OTRO</option>
+                        </select>
+                    </div>
+                    <center>
+                        <div class="mb-3">
+                            <button class="btn btn-success" id="btnsave" disabled><i
+                                    class="fas fa-upload" title="Completa todos los campos Para Registrar">Registrar</i></button>
+                        </div>
+                    </center>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="col-sm">
+            <div class="card " style="width: 18rem; ">
+                <img src="{% static 'imagenes/aulas.jpg'%} " class="card-img-top "
+                    alt="... ">
+                <div class="card-body ">
+                    <h5 class="card-title ">Cantidad de Aulas</h5>
+                    <p class="text ">Actualmente Cuentas con un Total de
+                        <input style="border: none;" class="cantidad" id="cantidad_label" value="{{total}}" disabled> Aulas Registradas
+                    </p>
+                    <div class="d-grid ">
+                        <button class="btn btn-success" type="button" title="Todas las Aulas" id="todas_aulas">Ver
+                            Todas las Aulas Registradas</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<div class="content-wrapper">
+    <center>
+        <p
+            style="color: white;font-size: 25px;font-family: Verdana, Geneva, Tahoma, sans-serif;background-color: green; ">
+            Ultima Aula Registrada</p>
+    </center>
+    <table class="table table-bordered table-responsive-sm" id="mitable">
+        <thead>
+            <tr>
+                <th scope="col ">Institución</th>
+                <th scope="col ">Grado</th>
+                <th scope="col ">Sección</th>
+                <th scope="col ">Nivel</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for n in aulas %}
+            <tr>
+                <td>
+                    {{n.institucion.nombre}}
+                </td>
+                <td>{{n.grado}}</td>
+                <td>{{n.seccion}}</td>
+                <td>{{n.get_nivel_display}}</td>
+            </tr>
+
+
+            {%endfor%}
+
+        </tbody>
+    </table>
+    {%endblock %}{% load static %}{% block javascript%}
+    
+    <script src="{% static 'melody/js/toastDemo.js' %}" type="module"></script>
+    <script src="{% static 'aula/aula.js' %}" type="module"></script>
+    <script>
+        function mayus(e) {
+            e.value = e.value.toUpperCase();
+        }
+    </script> {% endblock %}

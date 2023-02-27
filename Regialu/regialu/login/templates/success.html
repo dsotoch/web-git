@@ -1,0 +1,49 @@
+{% extends "base.html"%} {% load static %}
+
+
+{%block contenido%}
+<div class="card">
+
+  <form action="">
+    {% csrf_token %}
+    <div class="card-body">
+      <div class="card-body">
+        <div class="container-fluid" id="div-respuesta"
+          style="width: 100%;background-color: blueviolet;color: white;align-items: center;align-content: center;text-align: center;padding: 15px;">
+          <h3 class="text" style="text-align: center;" id="titulo">Esperando Respuesta del Servidor...</h3>
+          <h5> <span class="text">{{fecha}}</span></h5>
+          <table class="table" style="color: white;" id="detalles">
+            <tr>
+            
+              
+              <td>
+                <img src="{%static 'imagenes/licencia.png'%}" alt="" srcset="">
+              </td>
+            </tr>
+            <tr>
+              <td id="Payment-id"></td>
+            </tr>
+            <tr>
+              <td id="payer-id"></td>
+            </tr>
+            <tr>
+              <td id="token-id"></td>
+            </tr>
+
+          </table>
+        </div>
+
+        <div class="card">
+          <img src="{% static 'imagenes/pay.png' %}" class="card-img-top" alt="...">
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{%endblock%}
+{%load static%}
+{%block javascript%}
+
+<script src="{% static 'server.js'%}"></script>
+{%endblock%}

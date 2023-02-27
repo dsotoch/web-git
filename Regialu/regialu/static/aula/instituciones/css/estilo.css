@@ -1,0 +1,31 @@
+h5 {
+    background-color: rgb(253, 15, 15);
+    color: white;
+    height: 50px;
+    margin: 10px;
+    padding: 10px;
+}
+
+table th {
+    background-color: black;
+    color: white;
+}
+
+.divinstituciones {
+    border-width: 2px;
+    border-color: black;
+    background-color: rgb(247, 247, 247);
+    margin-top: 25px;
+}
+.btn-estado :hover{
+    border-radius: 15px;
+background-color: red;
+}
+.btn-delete :hover{
+    border-radius: 15px;
+background-color: red;
+}
+.btn-edit :hover{
+    border-radius: 15px;
+    background-color: red;
+}

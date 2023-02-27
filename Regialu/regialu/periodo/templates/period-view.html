@@ -1,0 +1,122 @@
+{% extends "base.html" %}{% load static %}
+{%block stilos %}
+<link rel="stylesheet" href="{% static 'periodo/stilo.css'%}">
+{%endblock%}
+{%block contenido %}
+<div class="row">
+    <div class="col-6">
+        <h5 class="page-title">Lista de Periodos</h5>
+    </div>
+</div>
+<div class="dropdown-divider"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-5">
+            <form action="">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title">Descripción del Periodo</h4>
+
+                        <input type="text" class="form-control" id="period-description" placeholder="Debe de ser Unico">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Fecha de Inicio</h4>
+                        <p class="card-description">Haga clic para abrir el selector de fechas(Mes/Dia/Año)</p>
+                        <div id="datepicker-popup" class="input-group date datepicker">
+                            <input type="text" class="form-control" id="start-date">
+                            <span class="input-group-addon input-group-append border-left">
+                                <span class="far fa-calendar input-group-text"></span>
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="card-body">
+                        <h4 class="card-title">Fecha de Termino</h4>
+                        <p class="card-description">Haga clic para abrir el selector de fechas(Mes/Dia/Año)</p>
+                        <div id="datepicker-popup1" class="input-group date datepicker">
+                            <input type="text" class="form-control" id="finish-date">
+                            <span class="input-group-addon input-group-append border-left">
+                                <span class="far fa-calendar input-group-text"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-info btn-icon-text" id="period-save"><i
+                                class="fas fa-upload btn-icon-prepend"></i>Registrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-7">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table" id="order-listing">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th scope="col">Periodo</th>
+                                    <th scope="col">Inicio</th>
+                                    <th scope="col">Fin</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%for n in periods %}
+
+                                <tr>
+                                    <td>{{n.idPeriodo}}</td>
+                                    <td>{{n.descripcion}}</td>
+                                    <td>{{n.fecha_inicio|date:"d/m/Y"}}</td>
+                                    <td>{{n.fecha_fin|date:"d/m/Y"}}</td>
+                                    <td>
+                                        {% if n.get_estado_display == "Activo" %}
+                                        <input style="border: none;text-align:center;" type="text" class="btn-success"
+                                            disabled value="{{n.get_estado_display}}">
+                                        {% else %}
+                                        <input style="border: none;text-align:center;" type="text" class="btn-danger"
+                                            disabled value="{{n.get_estado_display}}">
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="row">
+
+                                            <div class="col-6">
+                                                <button style="border: none;" type="button" class="btn-delete"
+                                                    title="Eliminar"><i class="fas fa-times-circle"></i></button>
+
+                                            </div>
+                                            <div class="col-6">
+                                                <button style="border: none;" class="btn-estado" type="button"
+                                                    title="Click para Cambiar Estado"><i
+                                                        class="fas fa-history"></i></button>
+                                            </div>
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                                {%endfor%}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{%endblock%}{%load static %}
+{%block javascript%}
+
+<script src="{% static 'melody/js/data-table.js' %}"></script>
+<script src="{% static 'melody/js/formpickers.js' %}"></script>
+<script src="{% static 'periodo/period.js' %}" type="module"></script>
+
+
+{%endblock%}

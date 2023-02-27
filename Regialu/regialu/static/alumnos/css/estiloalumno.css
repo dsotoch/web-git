@@ -1,0 +1,29 @@
+#select:focus {
+    background-color: rgb(255, 26, 26);
+}
+
+table th {
+    background-color: black;
+    color: white;
+}
+
+#mostrando {
+    font-weight: bold;
+    width: 100%;
+    color: white;
+}
+
+#divmostrando {
+    background-color: rgb(186, 85, 211);
+    width: 100%;
+    align-items: center;
+}
+
+#institucion {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(186, 85, 211);
+    color: white;
+    border-style: none;
+}

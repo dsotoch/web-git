@@ -1,0 +1,90 @@
+{% extends "base.html" %} {% load static%}
+{% block stilos %}
+<link rel="stylesheet" href="{% static 'alumnos/css/estilo.css' %}"> {%endblock%}
+{%block contenido%}
+<div class="row">
+    <div class="col-4">
+        <h5 class="page-title">Lista de Alumnos en General Registrados</h5>
+
+    </div>
+    <div class="col-2"> <a style="text-decoration: none;" href="{%url 'classroom_assign' %}"><button
+        class="btn btn-success btn-icon-text" title="Click para Asignar Aulas"><i class="fas fa-check btn-icon-prepend"></i>Asignar
+        Aulas </button></a></div>
+    <div class="col-3">
+      
+       <select class="form-control" aria-label="Default select example" id="institution"
+            title="Solo Instituciones Activas">
+            <option selected value="0">Seleccione una Institución</option>
+            {% for n in institutions%}
+            <option value="{{n.idInstitucion}}">{{n.nombre}}</option>
+
+            {%endfor%}
+
+        </select>
+    </div>
+    <div class="col-3">
+        <nav aria-label="breadcrumb" id="routes">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page"><a href="{% url 'indexAlumnos' %}">Subir Alumno</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Alumnos</li>
+
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="dropdown-divider"></div>
+
+<div class="container-fluid" style="background-color: white;">
+    <div class="row">
+        <div class="col-12">
+          
+          <div class="table-responsive">
+            <table class="table" id="order-listing">
+                <thead>
+                    <tr>
+                        <th hidden scope="col">Id</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Grado</th>
+                        <th scope="col">Aula</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for n in students %}
+                    <tr>
+                        <td hidden>{{n.idAlumno}}</td>
+                        <td>{{n.apellidos}}</td>
+                        <td>{{n.nombres}}</td>
+                        <td>{{n.grado}}</td>
+
+                        {%if n.aula.seccion == null %}
+                        <td>Sin Asignar</td>
+                        {%else%}
+                        <td>{{n.aula.grado}} {{n.aula.seccion}} {{n.aula.get_nivel_display}} {{n.aula.institucion.nombre}}</td>
+
+                        {%endif%}
+
+
+
+                    </tr>
+
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+
+        
+        </div>
+    </div>
+</div>
+
+{%endblock%} {%load static %}
+{%block javascript %}
+
+<script src="{% static 'melody/js/data-table.js' %}"></script>
+<script src="{% static 'alumnos/js/todoalumnos.js' %}"></script>
+
+
+{%endblock%}

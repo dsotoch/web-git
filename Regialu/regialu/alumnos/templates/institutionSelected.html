@@ -1,0 +1,190 @@
+{% extends "base.html" %} {% load static%}
+{% block stilos %}
+<link rel="stylesheet" href="{% static 'alumnos/css/estilo.css' %}"> {%endblock%}
+{%block contenido%}
+<div class="row">
+    <div class="col-3">
+        <h5 class="page-title">Lista de Alumnos Registrados de la Institución {{institutions.nombre}}</h5>
+        <input type="hidden" name="idInstitucion" id="idInstitucion" value="{{institutions.idInstitucion}}">
+    </div>
+
+    <div class="col-6">
+
+        <select class="form-control" aria-label="Default select example" id="institution"
+            title="Solo Instituciones Activas">
+            <option value="{{institutions.idInstitucion}}">{{institutions.nombre}}</option>
+
+        </select>
+        <br>
+
+
+        <div>
+            <button id="btn-newStudent" class=" btn btn-warning btn-icon-text" data-toggle="modal"
+                data-target="#exampleModal" title="Click para Asignar Nuevo Alumno"> <i class="fas fa-plus btn-icon-prepend"></i>
+                Nuevo
+                Alumno</button>
+        </div>
+
+
+        <div> <a style="text-decoration: none;" href="{%url 'classroom_assign1' institutions.idInstitucion %}"><button
+                    class="btn btn-success btn-icon-text" title="Click para Asignar Aulas a los Alumnos"><i class="fas fa-check btn-icon-prepend"></i>Asignar
+                    Aulas </button></a>
+        </div>
+
+        </center>
+    </div>
+    <div class="col-3">
+        <nav aria-label="breadcrumb" id="routes">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'students_all' %}">Alumnos</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{institutions.nombre}}</li>
+
+
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="dropdown-divider"></div>
+
+<div class="container-fluid" style="background-color: white;">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="table-responsive">
+                <table class="table" id="order-listing">
+                    <thead>
+                        <tr>
+                            <th hidden scope="col">Id</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Nombres</th>
+                            <th scope="col">Grado</th>
+                            <th scope="col">Aula</th>
+                            <th scope="col">Acción</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for n in students %}
+                        <tr>
+                            <td hidden>{{n.idAlumno}}</td>
+                            <td>{{n.apellidos}}</td>
+                            <td>{{n.nombres}}</td>
+                            <td>{{n.grado}}</td>
+
+                            {%if n.aula.seccion == null %}
+                            <td>Sin Asignar</td>
+                            {%else%}
+                            <td>{{n.aula.grado}} {{n.aula.seccion}} {{n.aula.get_nivel_display}}
+                                {{n.aula.institucion.nombre}}</td>
+
+                            {%endif%}
+                            <td>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button style="border: none;" title="Eliminar Alumno"
+                                            id="btn-delete-institution"> <i class="fas fa-trash"></i> </button>
+                                    </div>
+                                    <div class="col-6"><button style="border: none;" title="Editar Alumno"
+                                            id="editaralumno"> <i class="fas fa-edit"></i>
+                                        </button></div>
+                                </div>
+                            </td>
+
+
+
+                        </tr>
+
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" id="div-title">
+
+                <h5 class="modal-title title" id="exampleModalLabel">Registrar Alumno de la Institución
+                    {{institutions.nombre}}</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <form action="" style="padding: 10px;">
+                    <label for="apellidos" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" name="apellidos" id="apellidos"
+                        placeholder="Apellidos del Alumno" required>
+
+                    <br>
+                    <label for="nombres" class="from-label">Nombres</label>
+                    <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Nombres del Alumno"
+                        required>
+
+                    <br>
+                    <label for="grado" class="form-label">Grado</label>
+                    <input type="text" class="form-control" name="grado" id="grado" placeholder="Grado del Alumno"
+                        required>
+
+                    <br>
+                    <label for="aula">Aula</label>
+                    <select class="form-control classroom_select" aria-label="Default select example" id="selectAula">
+                        <option selected value="0">Seleccione una Aula</option>
+                    </select>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning btn-icon-text" id="btn-save-alumno"><i
+                        class="fas fa-upload btn-icon-prepend"></i>Grabar Alumno</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" id="div-title">
+
+                <h5 class="modal-title title" id="exampleModalLabel">Actualizar Alumno de la Institución
+                    {{institutions.nombre}}</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <form action="" style="padding: 10px;">
+                    <label for="apellidos" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" name="apellidosmodal" id="apellidosmodal"
+                        placeholder="Apellidos del Alumno" required>
+
+                    <br>
+                    <label for="nombres" class="from-label">Nombres</label>
+                    <input type="text" class="form-control" name="nombresmodal" id="nombresmodal"
+                        placeholder="Nombres del Alumno" required>
+                    <input type="hidden" id="idmodal">
+
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning btn-icon-text" id="btn-edit-institution"><i
+                        class="fas fa-upload btn-icon-prepend"></i>Actualizar Alumno</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%} {%load static %}
+{%block javascript %}
+
+<script src="{% static 'melody/js/data-table.js' %}"></script>
+<script src="{% static 'alumnos/js/todoalumnos.js' %}"></script>
+
+
+{%endblock%}
